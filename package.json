@@ -1,0 +1,18 @@
+{
+  "name": "friendly-broccoli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/yourbcabus/friendly-broccoli",
+  "author": "Anthony Li",
+  "license": "MIT",
+  "dependencies": {
+    "@koa/router": "^8.0.8",
+    "apollo-server-koa": "^2.11.0",
+    "db-migrate": "^0.11.6",
+    "db-migrate-pg": "^1.0.0",
+    "dotenv": "^8.2.0",
+    "graphql": "^14.6.0",
+    "koa": "^2.11.0",
+    "pg": "^7.18.2"
+  }
+}

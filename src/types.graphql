@@ -1,0 +1,39 @@
+scalar Data
+scalar Date
+
+type Query {
+    me: User
+}
+
+type User {
+    id: ID!
+    username: String!
+    school: [School!]!
+    meta: Data
+}
+
+type School {
+    id: ID!
+    users: [User!]!
+    meta: Data
+    buses: [Bus!]!
+}
+
+type Bus {
+    school: School!
+
+    id: ID!
+    meta: Data
+    locations: [String!]
+    history: [HistoryEntry!]
+    existsInDutyDB: Bool!
+}
+
+type HistoryEntry {
+    bus: Bus!
+
+    id: ID!
+    user: User
+    locations: [String!]!
+    date: Date!
+}
