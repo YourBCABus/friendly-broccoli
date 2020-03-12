@@ -16,8 +16,10 @@
     "dotenv": "^8.2.0",
     "google-auth-library": "^5.10.1",
     "graphql": "^14.6.0",
+    "jsonwebtoken": "^8.5.1",
     "koa": "^2.11.0",
     "koa-jwt": "^3.6.0",
+    "ms": "^2.1.2",
     "pg": "^7.18.2"
   }
 }

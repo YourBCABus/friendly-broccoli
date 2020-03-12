@@ -1,5 +1,7 @@
 const Router = require("@koa/router");
+const ms = require("ms");
 const providers = require("./providers");
+const authorize = require("./authorize");
 
 module.exports = (db, prefix) => {
     const router = new Router();
@@ -20,7 +22,18 @@ module.exports = (db, prefix) => {
     router.get("/callback/:provider", async ctx => {
         if (providers[ctx.params.provider]) {
             const provider = providers[ctx.params.provider](db);
-            await provider.handleCallback(ctx, {prefix});
+            const data = await provider.handleCallback(ctx, {prefix});
+            if (data) {
+                const {token} = await authorize(db, data);
+                if (token) {
+                    ctx.cookies.set("auth", token, {
+                        maxAge: process.env.AUTH_TOKEN_MAX_AGE ? ms(process.env.AUTH_TOKEN_MAX_AGE) : 3600000,
+                        httpOnly: false,
+                        secure: !!process.env.AUTH_TOKEN_SECURE
+                    });
+                    ctx.body = "Done";
+                }
+            }
         } else {
             ctx.status = 400;
             ctx.body = "Bad Auth Provider";
