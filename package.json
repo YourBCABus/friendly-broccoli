@@ -4,7 +4,7 @@
   "main": "index.js",
   "repository": "https://github.com/yourbcabus/friendly-broccoli",
   "scripts": {
-    "start": "node src/server.js"
+    "start": "node server/server.js"
   },
   "author": "Anthony Li",
   "license": "MIT",
